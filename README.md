@@ -17,7 +17,7 @@ package:
   version: v0.1.0
 
 imports:
-  converter: spkg.io/streamingfast/converter-v1.0.2
+  converter: spkg.io/streamingfast/substreams-db-graph-converter-v0.1.0.spkg
 
 modules:
 ...
