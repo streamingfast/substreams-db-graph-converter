@@ -1,6 +1,6 @@
 specVersion: v0.1.0
 package:
-  name: substreams_test
+  name: substreams_db_graph_converter
   version: v0.1.0
   
 imports:
