@@ -1,0 +1,44 @@
+specVersion: v0.1.0
+package:
+  name: substreams_test
+  version: v0.1.0
+  
+imports:
+  database_change: https://github.com/streamingfast/substreams-sink-database-changes/releases/download/v1.2.1/substreams-database-change-v1.2.1.spkg
+  entity: https://github.com/streamingfast/substreams-entity-change/releases/download/v1.1.0/substreams-entity-change-v1.1.0.spkg
+  
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: ./target/wasm32-unknown-unknown/release/substreams.wasm
+
+modules:
+    # - name: map_clocks
+    #   kind: map
+    #   initialBlock: 500000
+    #   inputs:
+    #     - source: sf.substreams.v1.Clock
+    #   output:
+    #     type: proto:sf.substreams.sink.database.v1.DatabaseChanges
+        
+    # - name: use_module
+    #   use: dbout_to_graphout
+    #   initialBlock: 100000
+    #   inputs:
+    #     - map : map_clocks
+    
+  - name: example_dbout 
+    kind: map
+    inputs:
+      - source: sf.substreams.v1.Clock
+    output:
+      type: proto:sf.substreams.sink.database.v1.DatabaseChanges
+
+  - name: dbout_to_graphout
+    kind: map
+    inputs:
+      - map: example_dbout
+    output:
+      type: proto:sf.substreams.entity.v1.EntityChanges
+
+network: mainnet
